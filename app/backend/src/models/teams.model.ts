@@ -3,10 +3,7 @@ import db from '.';
 
 export default class TeamsModel extends Model {
   id!: number;
-  username!: string;
-  role!: string;
-  email!: string;
-  password!: string;
+  teamName!: string;
 }
 
 TeamsModel.init({
