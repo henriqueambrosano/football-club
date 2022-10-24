@@ -12,4 +12,14 @@ export default class MatchesService {
       ] });
     return matches;
   }
+
+  async getByQuery(params: boolean) {
+    const matches = await this.matchesModel.findAll({
+      where: { inProgress: params },
+      include: [
+        { model: TeamsModel, as: 'teamHome', attributes: ['teamName'] },
+        { model: TeamsModel, as: 'teamAway', attributes: ['teamName'] },
+      ] });
+    return matches;
+  }
 }
