@@ -9,7 +9,7 @@ export default class TokenAuth {
 
   static encrypt(user: UserModel): string {
     const secret = process.env.JWT_SECRET as Secret;
-    const token = sign(user, secret);
+    const token = sign({ data: user }, secret);
 
     return token;
   }
