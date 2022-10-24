@@ -41,4 +41,14 @@ export default class MatchesController {
       res.status(401).json({ message: 'Token must be a valid token' });
     }
   }
+
+  async endMatch(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      await this.matchesService.endMatch(+id);
+      res.status(200).json({ message: 'Finished' });
+    } catch (error) {
+      res.status(500).json({ message: 'Internal server error' });
+    }
+  }
 }
