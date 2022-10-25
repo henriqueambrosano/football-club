@@ -1,6 +1,8 @@
 import { Request, Response } from 'express';
 import MatchesService from '../services/matches.service';
 
+const SERVER_ERROR = 'Internal server Error';
+
 export default class MatchesController {
   constructor(private matchesService: MatchesService) { }
 
@@ -17,7 +19,7 @@ export default class MatchesController {
       res.status(200).json(matches);
     } catch (error) {
       console.log(error);
-      res.status(500).json({ message: 'Internal server error' });
+      res.status(500).json({ message: SERVER_ERROR });
     }
   }
 
@@ -48,7 +50,18 @@ export default class MatchesController {
       await this.matchesService.endMatch(+id);
       res.status(200).json({ message: 'Finished' });
     } catch (error) {
-      res.status(500).json({ message: 'Internal server error' });
+      res.status(500).json({ message: SERVER_ERROR });
+    }
+  }
+
+  async updateMatch(req: Request, res: Response) {
+    try {
+      const { id } = req.params;
+      const { homeTeamGoals, awayTeamGoals } = req.body;
+      await this.matchesService.updateMatch(+id, homeTeamGoals, awayTeamGoals);
+      res.status(200).json({ message: 'Match updated!' });
+    } catch (error) {
+      res.status(500).json({ message: SERVER_ERROR });
     }
   }
 }
