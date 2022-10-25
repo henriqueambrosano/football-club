@@ -1,6 +1,6 @@
 import TeamsModel from '../models/teams.model';
 import MatchesModel from '../models/matches.model';
-import IMatch from '../interfaces/IMatch';
+import IMatch from '../interfaces/IMatchBody';
 import UserModel from '../models/user.model';
 import TokenAuth from '../auth/tokenAuth';
 

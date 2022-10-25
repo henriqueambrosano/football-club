@@ -1,6 +1,14 @@
+interface ITeam {
+  teamName: string;
+}
+
 export default interface IMatch {
-  homeTeam: number,
-  awayTeam: number,
-  homeTeamGoals: number,
-  awayTeamGoals: number,
+  id: number;
+  homeTeam: number;
+  homeTeamGoals: number;
+  awayTeam: number;
+  awayTeamGoals: number;
+  inProgress: number;
+  teamHome?: ITeam;
+  teamAway?: ITeam;
 }
